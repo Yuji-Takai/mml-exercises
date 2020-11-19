@@ -1,0 +1,326 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{geometry}[margin=0.5in]
+\usepackage{enumitem}
+
+\title{Exercises}
+\date{2020-11-15}
+\author{Yuji Takai}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \maketitle
+    \newpage
+    \section{Chapter 1}
+    
+    \section{Chapter 2}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \newpage
+        \subsection{}
+            \begin{enumerate}[label=(\alph*)]
+                \item Row reduce the augmented matrix $[A | I]$ to determine whether there exists an inverse for $A$
+                    \begin{align*}
+                        [A | I] &= 
+                        \left[\begin{array}{ccc|ccc}
+                            2 & 3 & 4 & 1 & 0 & 0\\
+                            3 & 4 & 5 & 0 & 1 & 0\\
+                            4 & 5 & 6 & 0 & 0 & 1
+                        \end{array}\right] \\
+                        &\sim
+                        \left[\begin{array}{ccc|ccc}
+                            2 & 3 & 4 & 1 & 0 & 0\\
+                            0 & 1 & 2 & 3 & -2 & 0\\
+                            0 & 0 & 0 & 1 & -2 & 1
+                        \end{array}\right] \\
+                    \end{align*}
+                    Since the third column of the augmented matrix is not a pivot column, $A^{-1}$ does not exist
+                \item Row reduce the augmented matrix $[A | I]$ to determine whether there exists an inverse for $A$
+                    \begin{align*}
+                        [A | I] &= 
+                        \left[\begin{array}{cccc|cccc}
+                            1 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\
+                            0 & 1 & 1 & 0 & 0 & 1 & 0 & 0\\
+                            1 & 1 & 0 & 1 & 0 & 0 & 1 & 0\\
+                            1 & 1 & 1 & 0 & 0 & 0 & 0 & 1\\
+                        \end{array}\right] \\
+                        &\sim
+                        \left[\begin{array}{cccc|cccc}
+                            1 & 0 & 0 & 0 & 0 & -1 & 0 & 1\\
+                            0 & 1 & 0 & 0 & -1 & 0 & 0 & 1\\
+                            0 & 0 & 1 & 0 & 1 & 1 & 0 & -1\\
+                            0 & 0 & 0 & 1 & 1 & 1 & 1 & -2\\
+                        \end{array}\right] \\
+                        \therefore A^{-1} &=  
+                        \left[\begin{matrix}
+                            0 & -1 & 0 & 1\\
+                            -1 & 0 & 0 & 1\\
+                            1 & 1 & 0 & -1\\
+                            1 & 1 & 1 & -2\\
+                        \end{matrix}\right]
+                    \end{align*}
+            \end{enumerate}
+        \newpage
+        \subsection{}
+            \begin{enumerate}[label=(\alph*)]
+                \item To prove $A$ is a subpace of $\mathbb{R}^3$, we need to prove that $A$ is not an empty set and $A$ is closed with respect to both inner and outer
+                    \begin{enumerate}[label=\arabic*.]
+                        \item Let $\vec{v}\in A$. When $\lambda = 0$, $\mu = 0$, $\vec{v} = (0, 0, 0)$. This means that $\textbf{0}\in A$ and thus $A \neq \emptyset$
+                        \item Closure of $A$
+                            \begin{itemize}
+                                \item With respect to the outer operation: 
+                                    $\forall c\in \mathbb{R}, \forall\vec{x}\in A: c\vec{x}\in A$
+                                    \begin{itemize}
+                                        \item $c\vec{x} = (c\lambda, c(\lambda + \mu^3), c(\lambda - \mu^3))\in A$
+                                    \end{itemize} 
+                                \item With respect to the inner operation: $\forall \vec{x}, \vec{y} \in A : \vec{x} + \vec{y} \in A$
+                                    \begin{itemize}
+                                        \item Let $\vec{x} = (\lambda_1, \lambda_1 + \mu_1^3, \lambda_1 - \mu_1^3)\in A$
+                                        \item Let $\vec{y} = (\lambda_2, \lambda_2 + \mu_2^3, \lambda_2 - \mu_2^3)\in A$
+                                        \item $\vec{x} + \vec{y} = (\lambda_1 + \lambda_2, \lambda_1 + \mu_1^3 + \lambda_2 + \mu_2^3, \lambda_1 - \mu_1^3 + \lambda_2 - \mu_2^3)$
+                                        \item Let $\lambda_3 = \lambda_1 + \lambda_2$
+                                        \item Then: $\vec{x} + \vec{y} = (\lambda_3, \lambda_3 + \mu_1^3 + \mu_2^3, \lambda_3 - \mu_1^3 - \mu_2^3)$
+                                        \item Let $\mu_1^3 + \mu_2^3 = \mu_3^3$
+                                        \item Then: $\vec{x} + \vec{y} = (\lambda_3, \lambda_3 + \mu_3^3, \lambda_3 - \mu_3^3) \in A$
+                                    \end{itemize}
+                            \end{itemize} 
+                    \end{enumerate}
+                \item To prove $B$ is a subpace of $\mathbb{R}^3$, we need to prove that $B$ is not an empty set and $B$ is closed with respect to both inner and outer
+                    \begin{itemize}
+                        \item While $B$ is not empty ($\vec{x} = (0, 0, 0) \in B$), $B$ is not closed with respect to outer operation
+                        \item Let $\vec{x} = (1, -1, 0) \in B$ and $c = -1$. Then $c\vec{x} = (-1, 1, 0)$. Since there is no number in $\mathbb{R}$ such that its square is less than 0. (only complex numbers are possible). 
+                        \item Therefore $c\vec{x} \notin B$
+                    \end{itemize}
+                \item To prove $C$ is a subpace of $\mathbb{R}^3$, we need to prove that $C$ is not an empty set and $C$ is closed with respect to both inner and outer
+                    \begin{enumerate}[label=\arabic*.]
+                        \item Let $\vec{v}\in C$. When $\xi_1 = 0$, $\xi_2 = 0$, $\xi_3 = 0$, $\vec{v} = (0, 0, 0) with \gamma = 0$. This means that $\textbf{0}\in C$ and thus $C \neq \emptyset$
+                        \item Closure of $C$
+                            \begin{itemize}
+                                \item With respect to the outer operation: 
+                                    $\forall c\in \mathbb{R}, \forall\vec{x}\in A: c\vec{x}\in A$
+                                    \begin{itemize}
+                                        \item $c\vec{x} = c(\xi_1, \xi_2, \xi_3) = (\xi'_1, \xi'_2, \xi'_3)$ with $\xi'_1 = c\xi_1, \xi'_2 = c\xi_2, \xi'_3 = c\xi_3, \xi'_1 + \xi'_2 + \xi'_3 = c\gamma = \gamma'$
+                                        \item Therefore closed wrt outer operation
+                                    \end{itemize} 
+                                \item With respect to the inner operation: $\forall \vec{x}, \vec{y} \in C : \vec{x} + \vec{y} \in C$
+                                    \begin{itemize}
+                                        \item Since of addition of a number in $\mathbb{R}$ will always yield a number in $\mathbb{R}$, $\vec{x} + \vec{y} \in C$ if $\vec{x}, \vec{y} \in C$
+                                    \end{itemize}
+                            \end{itemize} 
+                    \end{enumerate}
+                \item To prove $D$ is a subpace of $\mathbb{R}^3$, we need to prove that $D$ is not an empty set and $D$ is closed with respect to both inner and outer
+                    \begin{itemize}
+                        \item While $D$ is not empty ($\vec{x} = (0, 0, 0) \in B$), $D$ is not closed with respect to outer operation
+                        \item Let $\vec{x} = (0, 1, 0) \in D$ and $c = 0.5$. Then $c\vec{x} = (0, 0.5, 0)$.
+                        \item Since $0.5 \notin \mathbb{R}$, $c\vec{x} \notin D$
+                    \end{itemize}
+            \end{enumerate}
+        \newpage
+        \subsection{}
+            \begin{enumerate}[label=(\alph*)]
+                \item Let $A = [x_1, x_2, x_3]$ and row reduce it to see if all columns are pivots
+                    \begin{align*}
+                        A &= \left[\begin{matrix}
+                            2 & 1 & 3\\
+                            -1 & 1 & -3\\
+                            3 & -2 & 8
+                        \end{matrix}\right]\\
+                        &\sim \left[\begin{matrix}
+                            1 & 0 & 2\\
+                            0 & 1 & -1\\
+                            0 & 0 & 0
+                        \end{matrix}\right]
+                    \end{align*}
+                    \begin{itemize}
+                        \item Since the third column does not have a pivot, the three vectors are not linearly independent 
+                        \item From the row reduced matrix form, we can find that $x_3 = 2x_1 + (-1x_2)$
+                    \end{itemize}
+                \item Let $A = [x_1, x_2, x_3]$ and row reduce it to see if all columns are pivots
+                    \begin{align*}
+                        A &= \left[\begin{matrix}
+                            1 & 1 & 1\\
+                            2 & 1 & 0\\
+                            1 & 0 & 0\\
+                            0 & 1 & 1\\
+                            0 & 1 & 1
+                        \end{matrix}\right]\\
+                        &\sim \left[\begin{matrix}
+                            1 & 0 & 0\\
+                            0 & 1 & 0\\
+                            0 & 0 & 1\\
+                            0 & 0 & 0\\
+                            0 & 0 & 0
+                        \end{matrix}\right]
+                    \end{align*}
+                    \begin{itemize}
+                        \item Since all columns of $A$ have a pivot, the three vectors are linearly independent
+                    \end{itemize}
+            \end{enumerate}
+        \newpage
+        \subsection{}
+            Let $A = [x_1, x_2, x_3]$. We must find $x$ such that $Ax = y$. We will row reduce the augmented matrix $[A | y]$.
+            \begin{align*}
+                [A | y] &= \left[\begin{array}{ccc|c}
+                    1 & 1 & 2 & 1\\
+                    1 & 2 & -1 & -2\\
+                    1 & 3 & 1 & 5
+                \end{array}\right]\\
+                &\sim \left[\begin{array}{ccc|c}
+                    1 & 0 & 0 & -6\\
+                    0 & 1 & 0 & 3\\
+                    0 & 0 & 1 & 2
+                \end{array}\right]
+            \end{align*}
+            We can verify that $-6x_1 + 3x_2 + 2x_3 = y$
+        \subsection{}
+            When a vector $\vec{v} \in U_1 \cap U_2$, then there must be $\vec{x}$ and $\vec{y}$ such that $U_1\vec{x} = U_2\vec{y} = \vec{v}$. It is clear that $\vec{v}$ will be a linear combination of the basis of $U_1 \cap U_2$. 
+            We can get that $U_1\vec{x} - U_2\vec{y} = \vec{0}$. Let $A = [U_1 -U_2]$. Let's solve for the homogenous equation $A\vec{x'} = \vec{0}$:
+            \begin{align*}
+                A &= \left[\begin{matrix}
+                    1 & 2 & -1 & 1 & -2 & 3\\
+                    1 & -1 & 1 & 2 & 2 & -6\\
+                    -3 & 0 & -1 & -2 & 0 & 2\\
+                    1 & -1 & 1 & -1 & 0 & 1\\
+                \end{matrix}\right]\\
+                &\sim \left[\begin{matrix}
+                    9 & 0 & 3 & 0 & -4 & 8\\
+                    0 & 9 & -6 & 0 & -10 & 20\\
+                    0 & 0 & 0 & 3 & 2 & -7\\
+                    0 & 0 & 0 & 0 & 0 & 0\\
+                \end{matrix}\right]\\
+            \end{align*}
+            We can easily find that the nullspace of $A$ is 
+            \begin{equation*}
+                span\left(
+                    \left[\begin{matrix}
+                        -1\\
+                        2\\
+                        3\\
+                        0\\
+                        0\\
+                        0
+                    \end{matrix}\right], 
+                    \left[\begin{matrix}
+                        4\\
+                        10\\
+                        0\\
+                        -6\\
+                        9\\
+                        0
+                    \end{matrix}\right],
+                    \left[\begin{matrix}
+                        -8\\
+                        -20\\
+                        0\\
+                        21\\
+                        0\\
+                        9
+                    \end{matrix}\right]
+                \right)
+            \end{equation*}
+            Now, the interesting part of these three vectors is that, $\vec{x}$ is a linear combination of the upper half of the 3 vectors in the basis and $\vec{y}$ is the linear combination of the lower half of the 3 vectors in the basis.
+            To get the basis of $U_1 \cap U_2$, we simply need to compute the result of multiplying $U_1$ and 3 vectors that are the upper half of the 3 vectors in the basis of nullspace of A.
+            \begin{align*}
+                \left[\begin{matrix}
+                    1 & 2 & -1\\
+                    1 & -1 & 1\\
+                    -3 & 0 & -1\\
+                    1 & -1 & 1
+                \end{matrix}\right]
+                \left[\begin{matrix}
+                    -1\\
+                    2\\
+                    3\\
+                \end{matrix}\right] &=
+                \left[\begin{matrix}
+                    0\\
+                    0\\
+                    0\\
+                    0
+                \end{matrix}\right]\\
+                \left[\begin{matrix}
+                    1 & 2 & -1\\
+                    1 & -1 & 1\\
+                    -3 & 0 & -1\\
+                    1 & -1 & 1
+                \end{matrix}\right]
+                \left[\begin{matrix}
+                    4\\
+                    10\\
+                    0\\
+                \end{matrix}\right] &=
+                \left[\begin{matrix}
+                    24\\
+                    -6\\
+                    -12\\
+                    -6
+                \end{matrix}\right]\\
+                \left[\begin{matrix}
+                    1 & 2 & -1\\
+                    1 & -1 & 1\\
+                    -3 & 0 & -1\\
+                    1 & -1 & 1
+                \end{matrix}\right]
+                \left[\begin{matrix}
+                    -8\\
+                    -20\\
+                    0\\
+                \end{matrix}\right] &=
+                \left[\begin{matrix}
+                    -48\\
+                    12\\
+                    24\\
+                    12
+                \end{matrix}\right]\\
+            \end{align*}
+            This means that: 
+            \begin{equation*}
+                U_1 \cap U_2 = 
+                span\left(
+                    \left[\begin{matrix}
+                        0\\
+                        0\\
+                        0\\
+                        0
+                    \end{matrix}\right], 
+                    \left[\begin{matrix}
+                        24\\
+                        -6\\
+                        -12\\
+                        -6
+                    \end{matrix}\right],
+                    \left[\begin{matrix}
+                        -48\\
+                        12\\
+                        24\\
+                        12
+                    \end{matrix}\right]
+                \right)
+            \end{equation*}
+            Therefore the basis of $U_1 \cap U_2$ is:
+            \begin{equation*}
+                \left[\begin{matrix}
+                    4\\
+                    -1\\
+                    -2\\
+                    -1
+                \end{matrix}\right]
+            \end{equation*}
+
+
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+        \subsection{}
+
+\end{document}
