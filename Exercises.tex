@@ -314,11 +314,191 @@
                     -1
                 \end{matrix}\right]
             \end{equation*}
-
-
+        \newpage
         \subsection{}
+            Before approaching the subquestions, we should solve for $U_1$ and $U_2$
+            \begin{align*}
+                [A_1 | \vec{0}] &= \left[\begin{array}{c c c | c}
+                    1 & 0 & 1 & 0\\
+                    1 & -2 & -1 & 0\\
+                    2 & 1 & 3 & 0\\
+                    1 & 0 & 1 & 0
+                    \end{array}\right]\\
+                    &\sim \left[\begin{array}{c c c | c}
+                        1 & 0 & 1 & 0\\
+                        0 & 1 & 1 & 0\\
+                        0 & 0 & 0 & 0\\
+                        0 & 0 & 0 & 0
+                    \end{array}\right]
+            \end{align*}
+            Thus $U_1$ is:
+            \begin{equation*}
+                \text{span} \left(\left[\begin{matrix}
+                    -1\\
+                    -1\\
+                    1
+                \end{matrix}\right] \right)
+            \end{equation*}
+            \begin{align*}
+                [A_2 | \vec{0}] &= \left[\begin{array}{c c c | c}
+                    3 & -3 & 0 & 0\\
+                    1 & 2 & 3 & 0\\
+                    7 & -5 & 2 & 0\\
+                    3 & -1 & 2 & 0
+                    \end{array}\right]\\
+                    &\sim \left[\begin{array}{c c c | c}
+                        1 & 0 & 1 & 0\\
+                        0 & 1 & 1 & 0\\
+                        0 & 0 & 0 & 0\\
+                        0 & 0 & 0 & 0
+                    \end{array}\right]
+            \end{align*}
+            Thus $U_2$ is also:
+            \begin{equation*}
+                \text{span} \left(\left[\begin{matrix}
+                    -1\\
+                    -1\\
+                    1
+                \end{matrix}\right] \right)
+            \end{equation*}
+            \begin{enumerate}[label=(\alph*)]
+                \item dimensions of $U_1$ and $U_2$ are both 1
+                \item bases of $U_1$ and $U_2$ are both shown above
+                \item since $U_1$ and $U_2$ have the same basis, the basis of $U_1 \cap U_2$ is:
+                    \begin{equation*}
+                        \text{span} \left(\left[\begin{matrix}
+                            -1\\
+                            -1\\
+                            1
+                        \end{matrix}\right] \right)
+                    \end{equation*}
+            \end{enumerate}
         \subsection{}
+            So for some reason, exercises 2.13 and 2.14 are the same???
         \subsection{}
+            \begin{enumerate}[label=(\alph*)]
+                \item 
+                    \begin{itemize}
+                        \item Proving $F$ is a subspace of $\mathbb{R}^3$
+                            \begin{itemize}
+                                \item When $x, y, z$ are all 0, the vector $\vec{v} \in F$ would be $\vec{0}$. Therefore, $F\neq 0$
+                                \item If a vector $\vec{v} = (x, y, z) \in F$, 
+                                    then $x + y - z = 0$. 
+                                    $\forall \lambda \in \mathbb{R}$, 
+                                    $\lambda \vec{v} = (\lambda x, \lambda y, \lambda z)$. 
+                                    Since $x + y - z = 0$, 
+                                    $\lambda x + \lambda y - \lambda z = \lambda(x + y - z) = \lambda \cdot 0 = 0$. 
+                                    Thus, $\lambda \vec{v} \in F$ and $F$ is closed with respect to outer operation
+                                \item Let $\vec{v_1} = (x_1, y_1, z_1) \in F$ and $\vec{v_2} = (x_2, y_2, z_2) \in F$. Also, let $\vec{v_3} = \vec{v_1} + \vec{v_2} = (x_1 + x_2, y_1 + y_2, z_1 + z_2) = (x_3, y_3, z_3)$. Since both vectors are in $F$, $x_1 + y_1 - z_1 = 0$ and $x_2 + y_2 - z_2 = 0$. This means that $x_3 + y_3 - z_3 = (x_1 + x_2) + (y_1 + y_2) - (z_1 + z_2) = (x_1 + y_1 - z_1) + (x_2 + y_2 - z_2) = 0 + 0 = 0$. Therefore, $\vec{v_3}\in F$ and $F$ is closed with respect to inner operation
+                                \item Since $F$ is not empty and is closed with respect to the inner and outer operations, $F$ is a subspace of $\mathbb{R}^3$
+                            \end{itemize}
+                        \item Proving $G$ is a subspace of $\mathbb{R}^3$
+                            \begin{itemize}
+                                \item When $a, b$ are both 0, the vector $\vec{v} \in F$ would be $\vec{0}$. Therefore, $F\neq 0$
+                                \item Let $\vec{v} = (a - b, a + b, a - 3b)\in G$. $\forall \lambda \in \mathbb{R}$, $\lambda \vec{v} = (\lambda(a-b), \lambda(a+b), \lambda(a-3b))=(\lambda a - \lambda b, \lambda a + \lambda b, \lambda a - 3\lambda b)$. If we let $a' = \lambda a \in \mathbb{R}$ and $b' = \lambda b \in \mathbb{R}$, then $\lambda \vec{v} = (a' - b', a' + b', a' - 3b')$ which means $\lambda \vec{v} \in G$.
+                            \end{itemize}
+                    \end{itemize}
+                \item When a vector $\vec{v} = (x + y - z)$ is in $F\cap G$, then $x+y-z=0$ and $x=a-b, y=a+b, z=a-3b$ for some $a,b \in \mathbb{R}$. This means that $(a-b) + (a+b) - (a-3b)=a+3b=0$. Therefore, $a=-3b$. This means that $\vec{v} = (-4b, -2b, -6b) = -2b(2, 1, 3)$. Therefore, the basis of $F\cap G$ is:
+                    \begin{equation*}
+                        \left[\begin{matrix}
+                            2\\
+                            1\\
+                            3
+                        \end{matrix}\right]
+                    \end{equation*}
+                \item 
+                    \begin{itemize}
+                        \item For $F$, since $x + y - z = 0$, $y$ and $z$ are both free variables so a basis of $F$ is
+                            \begin{equation*}
+                                \left(
+                                    \left[
+                                        \begin{matrix}
+                                            -1\\
+                                            1\\
+                                            0
+                                        \end{matrix}
+                                    \right],
+                                    \left[
+                                        \begin{matrix}
+                                            1\\
+                                            0\\
+                                            1
+                                        \end{matrix}
+                                    \right]
+                                \right)
+                            \end{equation*}
+                        \item For $\vec{v} = (x, y, z) \in G$, since $x = (a - b), y = (a + b), z = (a - 3b)$, a basis for $G$ is:
+                            \begin{equation*}
+                                \left(
+                                    \left[
+                                        \begin{matrix}
+                                            1\\
+                                            1\\
+                                            1\\
+                                        \end{matrix}
+                                    \right],
+                                    \left[
+                                        \begin{matrix}
+                                            -1\\
+                                            1\\
+                                            -3\\
+                                        \end{matrix}
+                                    \right]
+                                \right)
+                            \end{equation*}
+                        \item If a vector $\vec{v} \in F \cap G$, then there 
+                            must be $\vec{x}$ and $\vec{y}$ such that $\vec{v} = F\vec{x} = G\vec{y}$.
+                            This means $F\vec{x}-G\vec{y}=\vec{0}$. To solve for $\vec{x}$ and $\vec{y}$, solve the homegeneous equation $Ax=0$ where $A$ is augmented matrix $A = [F, -G]$
+                            \begin{align*}
+                                A &= \left[
+                                    \begin{matrix}
+                                        -1 & 1 & -1 & 1\\
+                                        1 & 0 & -1 & -1\\
+                                        0 & 1 & -1 & 3
+                                    \end{matrix}
+                                \right]\\
+                                &\sim \left[
+                                    \begin{matrix}
+                                        1 & 0 & 0 & 2\\
+                                        0 & 1 & 0 & 6\\
+                                        0 & 0 & 1 & 3
+                                    \end{matrix}
+                                \right]
+                            \end{align*}
+                            This means that basis of nullspace of $A$ is 
+                            \begin{equation*}
+                                \left[\begin{matrix}
+                                    -2\\
+                                    -6\\
+                                    -3\\
+                                    1
+                                \end{matrix}\right]
+                            \end{equation*}
+                            This means that $\vec{x}$ is any scalar multiple of $(-2, -6)$ and $\vec{y}$ is any scalar multiple of $(-3, 1)$.
+                            Therefore, $\vec{v}$ would be any scalar multiple of:
+                            \begin{equation*}
+                                F\vec{x} = \left[
+                                    \begin{matrix}
+                                        -1 & 1\\
+                                        1 & 0\\
+                                        0 & 1
+                                    \end{matrix}
+                                \right] \cdot \left[
+                                    \begin{matrix}
+                                        -2\\
+                                        -6
+                                    \end{matrix}
+                                \right] = \left[
+                                    \begin{matrix}
+                                        -4\\
+                                        -2\\
+                                        -6
+                                    \end{matrix}
+                                \right]
+                            \end{equation*} 
+                            This basis is equal to the one found in (b) since $(-4, -2, -6) = -2(2, 1, 3)$. So there are the same!
+                    \end{itemize}
+            \end{enumerate}
         \subsection{}
         \subsection{}
         \subsection{}
