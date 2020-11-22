@@ -1,0 +1,419 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{geometry}[margin=0.5in]
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+
+\newcommand{\keyword}[1]{\textbf{\textcolor{red}{#1}}}
+\newcommand{\subkeyword}[1]{\textbf{\textcolor{blue}{#1}}}
+\newcommand{\mat}[1]{\textit{\textbf{#1}}}
+\newcommand{\inverse}[1]{\textit{\textbf{#1}}^{-1}}
+\newcommand{\transpose}[1]{\textit{\textbf{#1}}^{T}}
+\newcommand{\rspace}[2]{\mathbb{R}^{#1 \times #2}}
+
+\title{Linear Algebra}
+\date{2020-11-21}
+\author{Yuji Takai}
+
+\begin{document}
+    \pagenumbering{gobble}
+    \maketitle
+    \newpage
+    \section{Introduction}
+        \begin{definition}[\keyword{Vector}]
+            Object that can be added together and 
+                multiplied by scalars to produce another object of the same kind
+        \end{definition}
+        \begin{itemize}
+            \item Examples: geometric vectors, polynomials, audio 
+                signals, elements of $\mathbb{R}^n$
+        \end{itemize}
+    \section{System of linear equations}
+        \begin{align*}
+            a_{11}x_1 + \cdots &+ a_{1n} = b_1\\
+            \vdots&\\
+            a_{m1}x_1 + \cdots &+ a_{mn} = b_m
+        \end{align*}
+        \begin{itemize}
+            \item Every $n$-tuple $(x_1, \cdots, x_n) \in \mathbb{R}^n$ that 
+                satisfies the system of linear equations is a solution of the
+                linear equation system
+            \item Either \textit{no, exactly one, or infinitely many} solutions can be 
+                obtained for a real-valued system of linear equations
+            \item System of lilnear equation into matrix multiplication form
+            \begin{equation*}
+                \left[
+                    \begin{matrix}
+                        a_{11} & \cdots & a_{1n}\\
+                        \vdots & & \vdots\\
+                        a_{m1} & \cdots & a_{mn}
+                    \end{matrix}
+                \right]
+                \left[
+                    \begin{matrix}
+                        x_1\\
+                        \vdots\\
+                        x_n
+                    \end{matrix}
+                \right]
+                =
+                \left[
+                    \begin{matrix}
+                        b_1\\
+                        \vdots\\
+                        b_m
+                    \end{matrix}
+                \right]
+            \end{equation*}
+        \end{itemize}
+    \newpage
+    \section{Matrices}
+        \subsection{Definitions}
+            \begin{definition}[\keyword{Matrix}]
+                $m\times n$ tuple of elements $a_{ij}$ ($m, n \in \mathbb{R}$, 
+                $i = 1, \cdots ,m$ \& $j = 1, \cdots, n$), which is ordered 
+                according to a rectangular scheme consisting of $m$ rows and 
+                $n$ columns
+                \begin{equation*}
+                    \mat{A} = \left[
+                        \begin{matrix}
+                            a_{11} & a_{12} & \cdots & a_{1n}\\
+                            a_{21} & a_{22} & \cdots & a_{2n}\\
+                            \vdots & \vdots &        & \vdots\\
+                            a_{m1} & a_{m2} & \cdots & a_{mn}
+                        \end{matrix}
+                    \right], \quad a_{ij} \in \mathbb{R}
+                \end{equation*}
+                \begin{itemize}
+                    \item Represents systems of linear equations and linear 
+                        functions (linear mappings)
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\keyword{Identity Matrix}] 
+                Matrix $\mat{I}_n \in \mathbb{R}^{n\times n}$ that contains $1$ on the diagonal 
+                and $0$ everywhere else
+                \begin{equation*}
+                    \mat{I}_n \coloneqq \left[
+                        \begin{matrix}
+                            1      & 0      & \cdots & 0      & \cdots & 0      \\
+                            0      & 1      & \cdots & 0      & \cdots & 0      \\
+                            \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                            0      & 0      & \cdots & 1      & \cdots & 0      \\
+                            \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                            0      & 0      & \cdots & 0      & \cdots & 1      
+                        \end{matrix}
+                    \right] \in \mathbb{R}^{n\times n}
+                \end{equation*}
+            \end{definition}
+            \begin{definition}[\keyword{Inverse}]
+                For $\mat{A}\in\rspace{n}{n}$, $\mat{B}\in\rspace{n}{n}$ 
+                that has the property $\mat{A}\mat{B}=\mat{I}_n=\mat{B}\mat{A}$ 
+                is the \keyword{inverse} of $\mat{A}$, denoted by $\inverse{A}$
+                \begin{itemize}
+                    \item If $\mat{A}$ is \keyword{regular}/\keyword{invertible}/
+                        \keyword{nonsingular}, $\inverse{A}$ exists
+                    \item Otherwise $\mat{A}$ is \keyword{singular}/\keyword{noninvertible}
+                    \item When $\inverse{A}$ exists, it is unique
+                    \item Can use the \keyword{determinant} to check whether a
+                        matrix is invertible
+                    \item If $\mat{A}$ is invertible, then so is $\transpose{A}$, 
+                        and $\mat{A}^{-T}\coloneqq (\inverse{A})^{-T} = (\transpose{A})^{-1}$
+                    \item To compute the inverse, apply the \keyword{Gaussian elimination}
+                        on the augmented matrix $[\mat{A}|\mat{I}_n]$ to obtain 
+                        the reduced-row echelon form $[\mat{I}_n|\inverse{A}]$
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\keyword{Transpose}]
+                For $\mat{A}\in\rspace{m}{n}$, $\mat{B}\in\rspace{n}{m}$ with
+                $b_{ij} = a_{ji}$ is the \keyword{transpose} of $\mat{A}$, 
+                denoted by $\transpose{A}$ 
+            \end{definition}
+            \begin{definition}[\keyword{Symmetric Matrix}]
+                $\mat{A}\in\rspace{n}{n}$ such that $\mat{A}=\transpose{A}$
+                \begin{itemize}
+                    \item Sum of symmetric matrices is always symmetric
+                    \item Product is always defined, but generally not symmetric
+                \end{itemize}
+            \end{definition}
+        \subsection{Operations on Matrix}
+            \begin{definition}[\subkeyword{Matrix Addition}]
+                Element-wise sum for $\mat{A}, \mat{B} \in \rspace{m}{n}$
+                \begin{equation*}
+                    \mat{A} + \mat{B} \coloneqq \left[
+                        \begin{matrix}
+                            a_{11} + b_{11} & \cdots & a_{1n} + b_{1n}\\
+                            \vdots          &        & \vdots         \\
+                            a_{m1} + b_{m1} & \cdots & a_{mn} + b_{mn}\\
+                        \end{matrix}
+                    \right] \in \rspace{m}{n}
+                \end{equation*}
+            \end{definition}
+            \begin{definition}[\subkeyword{Matrix Multiplication}]
+                Matrix multiplication of $\mat{A} \in \rspace{m}{n}$, 
+                $\mat{B} \in \mathbb{R}^{n\times k}$ results in $\mat{C}\in 
+                \mathbb{R}^{\times k}$ with each element $c_{ij}$ being 
+                \subkeyword{dot product} of the $i$th row of $\mat{A}$ and $j$th 
+                column of $\mat{B}$
+                \begin{equation*}
+                    c_{ij} = \sum_{l = 1}^{n}a_{il}b_{lj} \quad 
+                    (i=1,\cdots,m, \quad j=1,\cdots,k)
+                \end{equation*}
+                \begin{itemize}
+                    \item Matrices can only be multiplied if their 
+                        “neighboring” dimensions match. 
+                    \item Ex: an $n\times k$-matrix $\mat{A}$ can be 
+                        multiplied with a $k\times m$-matrix $\mat{B}$, 
+                        but only from the left side i.e. 
+                        $\mat{A}\mat{B} = \mat{C}$, and $\mat{B}\mat{A}$ is
+                        undefined
+                    \item NOT defined as an element-wise operation on matrix
+                        elements i.e. $c_{ij} \neq a_{ij}b_{ij}$
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\subkeyword{Hadamard product}]
+                Element-wise multiplication of equally-sized multi-dimensional arrays
+            \end{definition}
+            \begin{definition}[\subkeyword{Scalar multiplication}]
+                If $\mat{A}\in\rspace{m}{n}$ and $\lambda \in \mathbb{R}$, then 
+                $\lambda \mat{A}=\mat{K}$ where $K_{ij} = \lambda a_{ij}$
+            \end{definition}
+        \subsection{Properties of Matrix}
+            \begin{itemize}
+                \item \subkeyword{Associativity}:
+                    $\forall \mat{A}\in\rspace{m}{n}$, 
+                    $\mat{B}\in\rspace{n}{p}$, 
+                    $\mat{C}\in\rspace{p}{q}$: 
+                    $(\mat{A}\mat{B})\mat{C} = \mat{A}(\mat{B}\mat{C})$
+                \item \subkeyword{Distributivity}:
+                    $\forall \mat{A}, \mat{B}\in\rspace{m}{n}$, 
+                    $\mat{C}, \mat{D}\in\mathbb{R}^{n\times p}$:
+                    \begin{itemize}
+                        \item $(\mat{A}+\mat{B})\mat{C}=\mat{A}\mat{C}+\mat{B}\mat{C}$
+                        \item $\mat{A}(\mat{C}+\mat{D})=\mat{A}\mat{C}+\mat{A}\mat{D}$
+                    \end{itemize} 
+                \item Multiplication with $\mat{I}$:
+                    $\forall \mat{A}\in\rspace{m}{n}$:
+                    $\mat{I}_m\mat{A}=\mat{A}\mat{I}_n=\mat{A}$
+                \item Inverse 
+                    \begin{itemize}
+                        \item $\mat{A}\inverse{A}=\mat{I}=\inverse{A}\mat{A}$
+                        \item $(\mat{A}\mat{B})^{-1} = \inverse{B}\inverse{A}$
+                        \item $(\mat{A}+\mat{B})^{-1} \neq \inverse{A} + \inverse{B}$
+                    \end{itemize}
+                \item Transpose 
+                    \begin{itemize}
+                        \item $\left(\transpose{A}\right)^T=\mat{A}$
+                        \item $(\mat{A}+\mat{B})^T=\transpose{A}+\transpose{B}$
+                        \item $(\mat{A}\mat{B})^T=\transpose{B}\transpose{A}$
+                    \end{itemize}
+                \item Multiplication with scalar 
+                    \begin{itemize}
+                        \item \subkeyword{Associativity}
+                            \begin{itemize}
+                                \item $(\lambda \psi)\mat{C}=\lambda(\psi\mat{C}), \quad \mat{C}\in\rspace{m}{n}$
+                                \item $\lambda (\mat{B}\mat{C})=(\lambda\mat{B})\mat{C}=\mat{B}(\lambda\mat{C})=(\mat{B}\mat{C})\lambda, \quad \mat{B}\in\rspace{m}{n},\mat{C}\in\rspace{n}{k}$
+                                \item $(\lambda \mat{C})^{T}=\transpose{C}\lambda^T=\transpose{C}\lambda=\lambda\transpose{C}$ (since $\forall\lambda\in\mathbb{R}: \lambda = \lambda^T$)
+                            \end{itemize}
+                        \item \subkeyword{Distributivity}
+                            \begin{itemize}
+                                \item $(\lambda+\psi)\mat{C}=\lambda\mat{C}+\psi\mat{C}, \quad\mat{C}\in\rspace{m}{n}$
+                                \item $\lambda(\mat{B}+\mat{C})=\lambda\mat{B}+\lambda\mat{C}, \quad\mat{B},\mat{C}\in\rspace{m}{n}$
+                            \end{itemize}
+                    \end{itemize}
+            \end{itemize}
+        \newpage
+        \subsection{Row reduction}
+            \begin{definition}[\subkeyword{Elementary transformation}]
+                Transformation of the system of equation into a simpler form while
+                keeping the solution set the same
+                \begin{itemize}
+                    \item Exchange of 2 equations (rows in the matrix representing
+                        the system of equations)
+                    \item Multiplcation of an equation (row) with a constant 
+                        $\lambda\in\mathbb{R}\symbol{92}\{0\}$
+                    \item Addition of 2 equations (rows)
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\subkeyword{Pivot}]
+                Leading coefficient of a row and is always strictly to the right 
+                of the pivot of the row above it
+                \begin{itemize}
+                    \item any equation system in row-echelon form always has a 
+                        "staircase" structure
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\subkeyword{Row-echelon form}]
+                A matrix is in row-echelon form if:
+                \begin{itemize}
+                    \item All rows that contain only zeros are at the bottom of
+                        the matrix i.e. all rows that contain at least one 
+                        nonzero element are on top of rows that contain only zeros
+                    \item Looking at nonzero rows only, the first nonzero number
+                        from the left (\subkeyword{pivot}/ leading coefficient) 
+                        is always strictly to the right of the pivot of the row
+                        above it
+                \end{itemize}
+            \end{definition}
+            \begin{definition}[\subkeyword{Basic variable}]
+                Variables corresponding to the pivots in the 
+                \subkeyword{row-echelon} form
+            \end{definition}
+            \begin{definition}[\subkeyword{Free variable}]
+                Variables corresponding to the non-pivots in the 
+                \subkeyword{row-echelon} form
+            \end{definition}
+            \begin{definition}[\subkeyword{Reduced row-echelon form}]
+                A matrix is in reduced row-echelon form if:
+                \begin{itemize}
+                    \item it is in \subkeyword{row-echelon} form
+                    \item every pivot is $1$
+                    \item the pivot is the only nonzero entry in its column
+                \end{itemize} 
+            \end{definition}
+            \begin{definition}[\subkeyword{Gaussian elimination}]
+                An algorithm that performs elementary transformations to bring a
+                system of linear equations into reduced row-echelon form. Useful
+                for:
+                \begin{itemize}
+                    \item Computing determinants
+                    \item Checking whether a set of vectors is \keyword{linearly independent}
+                    \item Computing the inverse of a matrix 
+                    \item Computing the rank of a matrix 
+                    \item Determining a basis of a vector space
+                \end{itemize}
+                However, impractical for systems with millions of variables 
+                ($O(n^3)$ algorithm)
+            \end{definition}
+        \subsection{Algorithms for solving a system of linear equations}
+            \begin{equation*}
+                \mat{A}\mat{x}=\mat{b}
+            \end{equation*}
+            \begin{itemize}
+                \item If there is \textit{no solution}, need to resort to approximate 
+                    solutions like \keyword{linear regression}
+                \item If $\mat{A}$ is a \subkeyword{square matrix} and 
+                    \keyword{invertible}, can determine $\inverse{A}$ and solve 
+                    the equation via $\mat{x}=\inverse{A}\mat{b}$
+                \item If $\mat{A}$ has linearly independent columns:
+                    \begin{equation*}
+                        \mat{A}\mat{x}=\mat{b}\Leftrightarrow
+                        \transpose{A}\mat{A}\mat{x}=\transpose{A}\mat{b}\Leftrightarrow
+                        \mat{x}=(\transpose{A}\mat{A})^{-1}\transpose{A}\mat{b}
+                    \end{equation*}
+                    \begin{itemize}
+                        \item \subkeyword{Moore-Penrose pseudo-inverse} $(\transpose{A}\mat{A})^{-1}\transpose{A}$
+                        \item Solution corresponds to the minimum norm least-squares solution
+                        \item Requires many computations for the matrix-matrix 
+                            product and computating inverse of $\transpose{A}\mat{A}$
+                        \item For reasons of numerical precision, not recommended 
+                            to compute the inverse or pseudo-inverse 
+                    \end{itemize}
+                \item Practical methods that indirectly solve systems of many linear equations
+                    \begin{itemize}
+                        \item Stationary iterative methods: Richardson  method, Jacobi method, Gauß-Seidel method, successive over-relaxation method 
+                        \item Krylov subspace methods: conjugate gradients, generalized minimal residual, biconjugate gradients
+                        \item Key idea of iterative methods: set up an iteration of the form
+                            \begin{equation*}
+                                \mat{x}^{(k+1)}=\mat{C}\mat{x}^{(k)}+\mat{d}
+                            \end{equation*}
+                            for suitable $\mat{C}$ and $\mat{d}$ that reduces 
+                            the residual error $\|\mat{x}^{(k+1)}-\mat{x}_*\|$ 
+                            in every iteration and converges to $\mat{x}_*$
+                    \end{itemize}
+            \end{itemize}
+        
+    \section{Vector spaces}
+        \begin{definition}[\keyword{Group}]
+            For a set $\mathcal{G}$ and an operation 
+            $\otimes: \mathcal{G}\times\mathcal{G}\rightarrow\mathcal{G}$,
+            $G\coloneqq(\mathcal{G}, \otimes)$ is called a \keyword{group} if 
+            the following hold:
+            \begin{enumerate}
+                \item \subkeyword{Closure} of $\mathcal{G}$ under $\otimes$:
+                    $\forall x, y\in\mathcal{G}: x\otimes y\in\mathcal{G}$
+                \item \subkeyword{Associativity}: $\forall x,y,z\in\mathcal{G}: (x\otimes y)\otimes z=x\otimes(y\otimes z)$
+                \item \subkeyword{Neutral element}: $\exists e\in\mathcal{G}, \forall x\in\mathcal{G}: x\otimes e=x \text{ and } e\otimes x=x$
+                \item \subkeyword{Inverse element}: $\forall x\in\mathcal{G}, \exists y\in\mathcal{G}: x\otimes y=e \text{ and } y\otimes x=e$ ($x^{-1}$: inverse element of $x$)
+            \end{enumerate}
+        \end{definition}
+        \begin{definition}[\keyword{Abelian group}]
+            Group $G=(\mathcal{G},\otimes)$ with \subkeyword{commutative} property: 
+            $\forall x,y\in\mathcal{G}$: $x\otimes y=y\otimes x$ 
+        \end{definition}
+        \begin{definition}[\keyword{General Linear Group}]
+            The group with the set of regular/ invertible matrices 
+            $\mat{A}\in\rspace{n}{n}$ and matrix multiplication as operation, 
+            denoted by $GL(n, \mathbb{R})$
+            \begin{itemize}
+                \item NOT Abelian $\leftarrow$ since matrix multiplication is 
+                    NOT commutative
+            \end{itemize}
+        \end{definition}
+        \begin{definition}[\keyword{Vector space}]
+            $V=(\mathcal{V},+,\cdot)$ that is a set $\mathcal{V}$ with 2 operations
+            \begin{itemize}
+                \item $+$: $\mathcal{V}\times\mathcal{V}\rightarrow\mathcal{V}$ 
+                    (\subkeyword{vector addition}/\subkeyword{inner operation})
+                \item $\cdot$: $\mathbb{R}\times\mathcal{V}\rightarrow\mathcal{V}$ 
+                    (\subkeyword{multiplication by scalars}/\subkeyword{outer operation})
+            \end{itemize}
+            where:
+            \begin{enumerate}
+                \item $(\mathcal{V},+)$ is an Abelian group
+                \item \subkeyword{Distributivity}:
+                    \begin{itemize}
+                        \item $\forall\lambda\in\mathbb{R},\mat{x},\mat{y}\in\mathcal{V}$: 
+                            $\lambda\cdot(\mat{x}+\mat{y})=\lambda\cdot\mat{x}+\lambda\cdot\mat{y}$
+                        \item $\forall\lambda,\psi\in\mathbb{R},\mat{x}\in\mathcal{V}$: 
+                            $(\lambda+\psi)\cdot\mat{x}=\lambda\cdot\mat{x}+\psi\cdot\mat{x}$
+                    \end{itemize}
+                \item \subkeyword{Associativity}: 
+                    $\forall\lambda,\psi\in\mathbb{R},\mat{x}\in\mathcal{V}$: 
+                    $\lambda\cdot(\psi\cdot\mat{x})=(\lambda\psi)\cdot\mat{x}$
+                \item \subkeyword{Neutral element} w.r.t the outer operation:
+                    $\forall\mat{x}\in\mathcal{V}$: $1\cdot\mat{x}=\mat{x}$
+            \end{enumerate}
+            Definitions/Properties:
+            \begin{enumerate}
+                \item \keyword{Vectors}: the elements $\mat{x}\in\mat{V}$
+                \item \keyword{Scalars}: the elements $\lambda\in\mathbb{R}$
+                \item Neutral element of $(\mathcal{V}, +)$ = zero vector $\mat{0}$
+            \end{enumerate}
+        \end{definition}
+        \newpage
+        \begin{definition}[\keyword{Vector subspace}]
+            Let $V=(\mathcal{V},+,\cdot)$ and $\mathcal{U}\subseteq\mathcal{V}$, 
+            $\mathcal{U}\neq\emptyset$. Then $U=(\mathcal{U},+,\cdot)$ is 
+            \keyword{vector subspace}/\keyword{linear subspace} of $V$ if $U$ is
+            a vector space with the vector space operations $+$ and $\cdot$ 
+            restricted to $\mathcal{U}\times\mathcal{U}$ and 
+            $\mathbb{R}\times\mathcal{U}$, denoted as $U\subseteq V$.
+            To determine $U=(\mathcal{U}, +, \cdot)$ is a subspace of $V$:
+            \begin{enumerate}
+                \item $\mathcal{U}\neq\emptyset$, in particular: 
+                    $\mat{0}\in\mathcal{U}$
+                \item Closure of $U$:
+                    \begin{itemize}
+                        \item w.r.t the outer operation: $\forall\lambda\in\mathbb{R},\forall\mat{x}\in\mathcal{U}$: $\lambda\mat{x}\in\mathcal{U}$
+                        \item w.r.t the inner operation: $\forall\mat{x},\mat{y}\in\mathcal{U}$: $\mat{x}+\mat{y}\in\mathcal{U}$
+                    \end{itemize}
+            \end{enumerate}
+            NOTE: every subspace $U\subseteq(\mathbb{R}^n, +, \cdot)$ is the 
+            solution space of a homogeneous system of linear equations 
+            $\mat{A}\mat{x}=\mat{0}$ for $\mat{x}\in\mathbb{R}^n$
+        \end{definition}
+    \section{}
+    \section{}
+    \section{}
+    \section{}
+
+\end{document}
