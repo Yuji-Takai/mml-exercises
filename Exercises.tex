@@ -502,5 +502,61 @@
         \subsection{}
         \subsection{}
         \subsection{}
+        \subsection{}
+        \subsection{}
+            \begin{enumerate}[label=\alph*.]
+                \item Done in separate place
+                \item Basis change vector $P_1$ can be found by computing the coordinates of the basis vectors of $B$ in terms of $B'$
+                    \begin{align*}
+                        [B' | b_1] &=
+                        \left[\begin{array}{cc|c}
+                             2 & 1 & 2\\
+                            -2 & 1 & 1
+                        \end{array}\right]\\
+                        &= \left[\begin{array}{cc|c}
+                            1 & 0 & \frac{1}{4}\\
+                            0 & 1 & \frac{3}{2}
+                       \end{array}\right]\\
+                        [B' | b_2] &=
+                        \left[\begin{array}{cc|c}
+                             2 & 1 & -1\\
+                            -2 & 1 & -1
+                        \end{array}\right]\\
+                        &= \left[\begin{array}{cc|c}
+                            1 & 0 & 0\\
+                            0 & 1 & -1
+                       \end{array}\right]\\
+                    \end{align*}
+                    Therefore $P_1$ is:
+                        \begin{equation*}
+                            \left[\begin{matrix}
+                                \frac{1}{4} & 0\\
+                                \frac{3}{2} & -1
+                            \end{matrix}\right]
+                        \end{equation*}
+                \item 
+                    \begin{enumerate}[label=(\roman*)]
+                        \item If determinant of $C$ is not equal to 0, then $C$ is a basis of $\mathbb{R}^3$
+                            \begin{align*}
+                                |C|&=1\left|\begin{matrix}
+                                    -1 & 0\\
+                                    2 & -1
+                                \end{matrix}\right|
+                                - 0\left|\begin{matrix}
+                                     2 & 0\\
+                                    -1 & -1
+                                \end{matrix}\right|
+                                + 1\left|\begin{matrix}
+                                     2 & -1\\
+                                    -1 &  2
+                                \end{matrix}\right|\\
+                                &= 1\times 1 - 0 \times (-2) + 1 \times 3\\
+                                &=4 \neq 0
+                            \end{align*}
+                            Therefore, $C$ is a basis of $\mathbb{R}^3$
+                        \item 
+                    \end{enumerate}
+                \item 
+            \end{enumerate}
 
 \end{document}

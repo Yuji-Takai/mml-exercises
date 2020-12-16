@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage{bm}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -411,7 +412,77 @@
             solution space of a homogeneous system of linear equations 
             $\mat{A}\mat{x}=\mat{0}$ for $\mat{x}\in\mathbb{R}^n$
         \end{definition}
-    \section{}
+    \newpage
+    \section{Linear independence}
+        \begin{definition}[\keyword{Linear combination}]
+            For a vector space $V$ and a finite number of vectors 
+            $\mat{x}_1,\cdots,\mat{x}_n\in \mat{V}$, every $\mat{v}\in\mat{V}$ 
+            of the form 
+            \begin{equation*}
+                \mat{v}=\lambda_1\mat{x}_1+\cdots+\lambda_k\mat{x}_k=\sum_{i=1}^{k}\lambda_i\mat{x}_i\in\mat{V}
+            \end{equation*}
+            with $\lambda_1,\cdots,\lambda_k\in\mathbb{R}$ is a 
+            \keyword{linear combination} of the vectors $\mat{x}_1,\dots,\mat{x}_k$
+        \end{definition}
+        \begin{definition}[\keyword{Linear (In)dependence}]
+            For a vector space $\mat{V}$ with $k\in\mathbb{N}$ and 
+            $\mat{x}_1,\dots,\mat{x}_k\in\mat{V}$:
+            \begin{itemize}
+                \item If there is a non-trivial linear combination, such that 
+                    $\textbf{0}=\sum_{i=1}^{k}\lambda_i\mat{x}_i$, the vectors 
+                    $\mat{x}_1,\dots,\mat{x}_k$ are \keyword{linearly dependent}
+                \item If only the trivial solution exists (i.e. 
+                    $\lambda_1=\dots=\lambda_k=0$), the vectors 
+                    $\mat{x}_1,\dots,\mat{x}_k$ are \keyword{linearly independent}
+            \end{itemize}
+            Properties of linear independence:
+            \begin{itemize}
+                \item $k$ vectors are either linearly dependent or linearly 
+                    independent = no third option
+                \item If at least one of the vectors $\mat{x}_1,\dots,\mat{x}_k$
+                    is $\textbf{0}$ or two vectors are identical, then they are 
+                    linearly dependent
+                \item The vectors $\{\mat{x}_1,\dots,\mat{x}_k : x_i\neq\textbf{0}, i=1,\dots,k\}$, 
+                    $k\geq 2$ are linearly dependent iff (at least) one of them 
+                    is a linear combination of the others 
+                \item Practical way of checking whether vectors 
+                    $\mat{x}_1,\dots,\mat{x}_k$ are linearly independent is to 
+                    use Gaussian elimination: write all vectors as columns of a 
+                    matrix $\mat{A}$ and perform Gaussian elimination until the
+                    matrix is in row echelon form:
+                    \begin{itemize}
+                        \item The \keyword{pivot} columns indicate the vectors, which are 
+                            linearly independent of the vectors on the left
+                        \item The \keyword{non-pivot} columns can be expressed as linear 
+                            combinations of the pivot columns on their left 
+                        \item All column vectors are \keyword{linearly independent} iff 
+                            \underline{\textit{all}} columns are pivot columns 
+                            $\Leftrightarrow$ if there is at least one non-pivot
+                            column, the columns are linearly dependent 
+                    \end{itemize}
+            \end{itemize}
+        \end{definition}
+        Vector space, basis and linear independence
+        \begin{itemize}
+            \item Vector space $V$ with $k$ linearly independent vectors $\mat{b}_1,...,\mat{b}_k$ and $m$ linear combinations
+                \begin{align*}
+                    \mat{x}_1 &= \sum_{i=1}^{k}\lambda_{i1}\mat{b}_i,\\
+                    &\vdots\\
+                    \mat{x}_m &= \sum_{i=1}^{k}\lambda_{im}\mat{b}_i
+                \end{align*}
+                \begin{itemize}
+                    \item Defining $\mat{B}=[\mat{b}_1, \dots, \mat{b}_k]$: 
+                        \begin{equation*}
+                            \mat{x}_j=\mat{B}\bm{\lambda}_j, \quad \bm{\lambda}_j=\left[\begin{matrix}
+                                \lambda_{1j}\\
+                                \vdots\\
+                                \lambda_{kj}
+                            \end{matrix}\right], \quad j = 1, \dots, m
+                        \end{equation*}
+                    \item 
+                \end{itemize}
+            \item
+        \end{itemize}
     \section{}
     \section{}
     \section{}
